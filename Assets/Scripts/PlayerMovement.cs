@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
-
     public float speed = 5.0f;
+    public float force = 10.0f;
+    public ForceMode mode;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,5 +27,15 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = transform.forward * moveInput.y + transform.right * moveInput.x;
         rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
+        rb.AddForce(Vector3.up * force, mode);
     }
 }
