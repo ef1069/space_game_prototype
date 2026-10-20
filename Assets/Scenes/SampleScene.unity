@@ -208,7 +208,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 70a9c63fff1ca6343beff234452e38d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,8 +249,8 @@ Transform:
   m_GameObject: {fileID: 144602889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.74, y: 0.5, z: -2.68358}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.64, y: 2, z: -2.68358}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1277,7 +1277,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495278538}
   serializedVersion: 8
-  lengthInSec: 0.2
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -1316,7 +1316,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 3
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1333,7 +1333,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 3
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
