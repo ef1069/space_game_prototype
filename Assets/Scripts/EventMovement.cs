@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class EventMovement : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class EventMovement : MonoBehaviour
     public float force = 10.0f;
     public float horizSpeed = 10.0f;
     protected Vector2 moveInput;
-
+    private bool canJump = true;
+    public float jumpTime = 1.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,9 +24,19 @@ public class EventMovement : MonoBehaviour
         rb.MovePosition(transform.position + move * horizSpeed * Time.fixedDeltaTime);
     }
 
-    void OnJump()
+    public void OnJump()
     {
-        rb.AddForce(Vector3.up * force, ForceMode.Impulse);
+        if (canJump == true) {
+            rb.AddForce(Vector3.up * force, ForceMode.Impulse);
+            canJump = false;
+            StartCoroutine(ResetJump());
+        }
+    }
+
+    private IEnumerator ResetJump()
+    {
+        yield return new WaitForSeconds(jumpTime);
+        canJump = true;
     }
 
     void OnMove(InputValue input)

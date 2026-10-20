@@ -16,6 +16,5 @@ public class ParticleJump : MonoBehaviour
         if (canPlay == true) {
             particles.Play();
         }
-        Debug.Log("Collision detected.");
     }
 }
