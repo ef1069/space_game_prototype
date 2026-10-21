@@ -1,33 +1,40 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ParticleChangeDir : MonoBehaviour
 {
     public ParticleSystem changeDirection;
-    private float lastMoveDirection;
-
+    private Vector3 lastMoveDirection;
+    [SerializeField] private Rigidbody rb;
     private void OnMove(InputValue input)
     {
-        float horizontalInput = input.Get<Vector2>().x;
+        Vector2 inputDirection = input.Get<Vector2>();
+        Vector3 newMoveDirection = new Vector3(inputDirection.x, 0f, inputDirection.y);
 
-        if (horizontalInput != 0f)
+        if (newMoveDirection.sqrMagnitude == 0f)
         {
-            float currentDirection = Mathf.Sign(horizontalInput);
-
-            if (lastMoveDirection != 0f && currentDirection != lastMoveDirection)
-            {
-                PlayChDirParticles();
-            }
-            lastMoveDirection = currentDirection;
+            return;
         }
+
+        newMoveDirection.Normalize();
+
+        if (lastMoveDirection != Vector3.zero && Vector3.Dot(lastMoveDirection, newMoveDirection) < 0f)
+        {
+            PlayChDirParticles(newMoveDirection);
+        }
+
+        lastMoveDirection = newMoveDirection;
     }
 
-    private void PlayChDirParticles()
+    private void PlayChDirParticles(Vector3 moveDirection)
     {
-        if (changeDirection != null)
+        if (changeDirection != null && rb != null && rb.linearVelocity.magnitude > 0.55f)
         {
+            changeDirection.transform.rotation = Quaternion.LookRotation(-moveDirection, Vector3.up);
             changeDirection.Stop();
             changeDirection.Play();
         }
-    }
+}
+
 }
