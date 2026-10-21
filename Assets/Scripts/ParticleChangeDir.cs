@@ -6,7 +6,6 @@ public class ParticleChangeDir : MonoBehaviour
 {
     public ParticleSystem changeDirection;
     private Vector3 lastMoveDirection;
-    [SerializeField] private Rigidbody rb;
     private void OnMove(InputValue input)
     {
         Vector2 inputDirection = input.Get<Vector2>();
@@ -29,7 +28,7 @@ public class ParticleChangeDir : MonoBehaviour
 
     private void PlayChDirParticles(Vector3 moveDirection)
     {
-        if (changeDirection != null && rb != null && rb.linearVelocity.magnitude > 0.55f)
+        if (changeDirection != null)
         {
             changeDirection.transform.rotation = Quaternion.LookRotation(-moveDirection, Vector3.up);
             changeDirection.Stop();
