@@ -5,6 +5,9 @@ using System.Collections;
 public class EventMovement : MonoBehaviour
 {
     protected Rigidbody rb;
+    private Renderer mr;
+    private Material originalMaterial;
+    [SerializeField] private Material collectibleMaterial;
     public float force = 10.0f;
     public float horizSpeed = 10.0f;
     protected Vector2 moveInput;
@@ -14,6 +17,11 @@ public class EventMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+                mr = GetComponentInChildren<Renderer>();
+        if (mr != null)
+        {
+            originalMaterial = mr.sharedMaterial;
+        }
     }
 
     // FixedUpdate is called once per frame
@@ -44,5 +52,31 @@ public class EventMovement : MonoBehaviour
         moveInput = input.Get<Vector2>();
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Collectible"))
+        {
+            if (mr == null)
+            {
+                Debug.LogError("PlayerMovement could not find a Renderer on this object or its children.", this);
+                return;
+            }
+
+            if (collectibleMaterial == null)
+            {
+                Debug.LogError("Assign a collectible material to PlayerMovement.", this);
+                return;
+            }
+
+            StartCoroutine(ShowCollectibleEffect());
+        }
+    }
+
+    IEnumerator ShowCollectibleEffect()
+    {
+        mr.material = collectibleMaterial;
+        yield return new WaitForSeconds(0.5f);
+        mr.material = originalMaterial;
+    }
     
 }

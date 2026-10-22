@@ -6,8 +6,10 @@ public class Collectible : MonoBehaviour
     public Vector3 rotationSpeed = new Vector3(0, 100, 0);
     private int playerScore = 0;
     public float bobHeight = 0.2f;
-    public float bobSpeed = 1.5f;
+    public float bobSpeed = 2.0f;
     private Vector3 startPosition;
+
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
