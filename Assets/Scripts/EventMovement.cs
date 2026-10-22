@@ -75,7 +75,7 @@ public class EventMovement : MonoBehaviour
     IEnumerator ShowCollectibleEffect()
     {
         mr.material = collectibleMaterial;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         mr.material = originalMaterial;
     }
     
