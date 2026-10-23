@@ -18,7 +18,7 @@ public class ParticleChangeDir : MonoBehaviour
 
         newMoveDirection.Normalize();
 
-        if (lastMoveDirection != Vector3.zero && Vector3.Dot(lastMoveDirection, newMoveDirection) < 0f)
+        if (lastMoveDirection != Vector3.zero && Vector3.Dot(lastMoveDirection, newMoveDirection) < 0.99f)
         {
             PlayChDirParticles(newMoveDirection);
         }
@@ -32,7 +32,7 @@ public class ParticleChangeDir : MonoBehaviour
         {
             changeDirection.transform.rotation = Quaternion.LookRotation(-moveDirection, Vector3.up);
             changeDirection.Stop();
-            changeDirection.Play();
+            changeDirection.Play(); 
         }
 }
 
