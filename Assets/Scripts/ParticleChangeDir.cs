@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +5,7 @@ public class ParticleChangeDir : MonoBehaviour
 {
     public ParticleSystem changeDirection;
     private Vector3 lastMoveDirection;
+
     private void OnMove(InputValue input)
     {
         Vector2 inputDirection = input.Get<Vector2>();
@@ -13,6 +13,7 @@ public class ParticleChangeDir : MonoBehaviour
 
         if (newMoveDirection.sqrMagnitude == 0f)
         {
+            lastMoveDirection = Vector3.zero;
             return;
         }
 
@@ -20,20 +21,21 @@ public class ParticleChangeDir : MonoBehaviour
 
         if (lastMoveDirection != Vector3.zero && Vector3.Dot(lastMoveDirection, newMoveDirection) < 0.99f)
         {
-            PlayChDirParticles(newMoveDirection);
+            PlayDirectionChangeParticles(newMoveDirection);
         }
 
         lastMoveDirection = newMoveDirection;
     }
 
-    private void PlayChDirParticles(Vector3 moveDirection)
+    private void PlayDirectionChangeParticles(Vector3 moveDirection)
     {
-        if (changeDirection != null)
+        if (changeDirection == null)
         {
-            changeDirection.transform.rotation = Quaternion.LookRotation(-moveDirection, Vector3.up);
-            changeDirection.Stop();
-            changeDirection.Play(); 
+            return;
         }
-}
 
+        changeDirection.transform.rotation = Quaternion.LookRotation(-moveDirection, Vector3.up);
+        changeDirection.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        changeDirection.Play(true);
+    }
 }
