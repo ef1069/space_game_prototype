@@ -12,7 +12,7 @@
                     "id": "80d61621-30b3-4644-8686-3280f2d3baf0",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -24,6 +24,16 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "JumpEnded",
+                    "type": "Button",
+                    "id": "c50836d9-df9e-4ad3-acb1-0f932105f177",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false,
                     "priority": 0
                 }
             ],
@@ -159,6 +169,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5801a15c-5b65-4184-95d1-920073748647",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpEnded",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

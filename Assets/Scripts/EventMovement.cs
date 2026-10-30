@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEditor;
 
 public class EventMovement : MonoBehaviour
 {
@@ -13,11 +14,12 @@ public class EventMovement : MonoBehaviour
     protected Vector2 moveInput;
     private bool canJump = true;
     public float jumpTime = 1.2f;
+    public float downForce = 10.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-                mr = GetComponentInChildren<Renderer>();
+        mr = GetComponentInChildren<Renderer>();
         if (mr != null)
         {
             originalMaterial = mr.sharedMaterial;
@@ -39,6 +41,11 @@ public class EventMovement : MonoBehaviour
             canJump = false;
             StartCoroutine(ResetJump());
         }
+    }
+
+    public void OnJumpEnded()
+    {
+        rb.AddForce(Vector3.down * downForce, ForceMode.Impulse);
     }
 
     private IEnumerator ResetJump()
