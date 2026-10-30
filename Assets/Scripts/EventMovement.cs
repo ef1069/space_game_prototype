@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEditor;
+using Unity.VisualScripting;
 
 public class EventMovement : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class EventMovement : MonoBehaviour
     [SerializeField] private Material collectibleMaterial;
     public float force = 10.0f;
     public float horizSpeed = 10.0f;
+    public float horizSpeedDefault = 10.0f;
     protected Vector2 moveInput;
     private bool canJump = true;
     public float jumpTime = 1.2f;
     public float downForce = 10.0f;
+    public float rampModifier = 2.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -77,6 +80,29 @@ public class EventMovement : MonoBehaviour
 
             StartCoroutine(ShowCollectibleEffect());
         }
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            horizSpeed += rampModifier;
+            Debug.LogError("Contact");
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            RampBoost();
+            horizSpeed = horizSpeedDefault;
+            Debug.LogError("Contact Stop");
+        }
+    }
+
+    IEnumerator RampBoost()
+    {
+        yield return new WaitForSeconds(2.0f);
     }
 
     IEnumerator ShowCollectibleEffect()

@@ -8,7 +8,7 @@ public class Collectible : MonoBehaviour
     public float bobHeight = 0.2f;
     public float bobSpeed = 2.0f;
     private Vector3 startPosition;
-
+    public Canvas collectedPopup;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
