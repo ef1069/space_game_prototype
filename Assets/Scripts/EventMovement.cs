@@ -78,6 +78,7 @@ public class EventMovement : MonoBehaviour
                 return;
             }
 
+
             StartCoroutine(ShowCollectibleEffect());
         }
     }
@@ -86,6 +87,7 @@ public class EventMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ramp"))
         {
             horizSpeed += rampModifier;
+            RampBoost();
             Debug.LogError("Contact");
         }
     }
@@ -111,5 +113,5 @@ public class EventMovement : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         mr.material = originalMaterial;
     }
-    
+
 }
