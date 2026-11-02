@@ -8,6 +8,7 @@ public class AudioWithOptions : MonoBehaviour
     private bool waitPastInitialCollision = false;
     private bool isMoving = false;
     private bool isJumping = false;
+    private Vector2 lastMoveDirection;
     private AudioSource audioPlayer;
     private Rigidbody playerRigidbody;
     private readonly HashSet<Collider> groundContacts = new HashSet<Collider>();
@@ -83,7 +84,8 @@ public class AudioWithOptions : MonoBehaviour
 
     void OnMove(InputValue input)
     {
-        isMoving = input.Get<Vector2>().sqrMagnitude > 0f;
+        Vector2 moveDirection = input.Get<Vector2>();
+        isMoving = moveDirection.sqrMagnitude > 0f;
 
         if (isMoving && IsGrounded)
         {
@@ -93,13 +95,36 @@ public class AudioWithOptions : MonoBehaviour
         {
             StopMoveSound();
         }
+
+        if (!isMoving)
+        {
+            lastMoveDirection = Vector2.zero;
+            return;
+        }
+
+        moveDirection.Normalize();
+        if (lastMoveDirection != Vector2.zero &&
+            Vector2.Dot(lastMoveDirection, moveDirection) < 0.99f)
+        {
+            if (chDirSound == null)
+            {
+                Debug.LogError("Assign a change-direction sound to AudioWithOptions.", this);
+            }
+            else
+            {
+                audioPlayer.PlayOneShot(chDirSound);
+            }
+        }
+
+        lastMoveDirection = moveDirection;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Collectible"))
         {
-            PlaySound(sfx[COLLECT]);
+            audioPlayer.clip = sfx[COLLECT];
+            audioPlayer.Play();
         }
     }
     public void PlayJumpSound()

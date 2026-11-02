@@ -20,14 +20,23 @@ public class Trampoline : MonoBehaviour
             return;
         }
 
+        if (IsTopContact(collision))
+        {
+            collision.rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
+        }
+    }
+
+    public bool IsTopContact(Collision collision)
+    {
         float topY = trampolineCollider.bounds.max.y;
         for (int i = 0; i < collision.contactCount; i++)
         {
             if (collision.GetContact(i).point.y >= topY - topContactTolerance)
             {
-                collision.rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 }

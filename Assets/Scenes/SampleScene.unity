@@ -348,8 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioWithOptions
   jumpingSound: {fileID: 8300000, guid: 76e763687c5477b4eb916eff232e0e06, type: 3}
   landingSound: {fileID: 8300000, guid: 4830bc9d04c55634fbae2b9453f6aec1, type: 3}
-  moveSound: {fileID: 8300000, guid: 7acbc000568755f41ac9d4715d359eb8, type: 3}
-  chDirSound: {fileID: 8300000, guid: 839892f4d857813458256fa7db0d5a52, type: 3}
+  moveSound: {fileID: 8300000, guid: 27f9e78e2bab01843b02ee03a0768d68, type: 3}
+  chDirSound: {fileID: 8300000, guid: 727b9de5450ed46489691038909b8df4, type: 3}
   collectSound: {fileID: 8300000, guid: 1cb1ff9ea2f0a614284eeeb2f6243043, type: 3}
 --- !u!1001 &265226157
 PrefabInstance:
@@ -784,6 +784,121 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -88.598, z: 0}
+--- !u!1 &541504830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5592971941068501023, guid: ffe56888e13dc8c4bbc4bec6942751a1, type: 3}
+  m_PrefabInstance: {fileID: 8680783502546037480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &541504837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541504830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5524364ee90954b47b4de644cdab6989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrampolineAudio
+  trampolineSound: {fileID: 8300000, guid: 90fba7af0d310164a9abc624f902e0b1, type: 3}
+--- !u!82 &541504838
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541504830}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &617675063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9062,7 +9177,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5592971941068501023, guid: ffe56888e13dc8c4bbc4bec6942751a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 541504838}
+    - targetCorrespondingSourceObject: {fileID: 5592971941068501023, guid: ffe56888e13dc8c4bbc4bec6942751a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 541504837}
   m_SourcePrefab: {fileID: 100100000, guid: ffe56888e13dc8c4bbc4bec6942751a1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
