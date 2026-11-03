@@ -351,6 +351,20 @@ MonoBehaviour:
   moveSound: {fileID: 8300000, guid: 27f9e78e2bab01843b02ee03a0768d68, type: 3}
   chDirSound: {fileID: 8300000, guid: 727b9de5450ed46489691038909b8df4, type: 3}
   collectSound: {fileID: 8300000, guid: 1cb1ff9ea2f0a614284eeeb2f6243043, type: 3}
+--- !u!114 &110896265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110896225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d6e82e99b280c4385ff4a9596c9245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Anticipation
+  slowedTimeScale: 0.1
+  slowDuration: 0.25
 --- !u!1001 &265226157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -986,7 +1000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &650586339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8520,7 +8534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1628163491
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9007,6 +9021,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4784779688917215866, guid: a17158e4d635ae7418441b182c78cde8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 110896264}
+    - targetCorrespondingSourceObject: {fileID: 4784779688917215866, guid: a17158e4d635ae7418441b182c78cde8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 110896265}
   m_SourcePrefab: {fileID: 100100000, guid: a17158e4d635ae7418441b182c78cde8, type: 3}
 --- !u!1001 &5829988382450937670
 PrefabInstance:
