@@ -9124,6 +9124,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1628163490}
     - target: {fileID: 7253411637034275536, guid: a17158e4d635ae7418441b182c78cde8, type: 3}
+      propertyPath: movementSmoothing
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253411637034275536, guid: a17158e4d635ae7418441b182c78cde8, type: 3}
       propertyPath: collectibleMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 41c1e25bf17e9a84ab0ac1c1d3782f1c, type: 2}

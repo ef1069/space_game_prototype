@@ -19,6 +19,8 @@ public class EventMovement : MonoBehaviour
     public float downForce = 10.0f;
     public float rampModifier = 2.0f;
     public GameObject collectedPopup;
+    [SerializeField] private float movementSmoothing = 12.0f;
+    private Vector3 smoothedMoveVelocity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,9 +35,17 @@ public class EventMovement : MonoBehaviour
     // FixedUpdate is called once per frame
     void FixedUpdate()
     {
-        Vector3 move = new Vector3(moveInput.x, 0.0f, moveInput.y);
+        Vector3 inputMove = new Vector3(moveInput.x, 0.0f, moveInput.y);
+        inputMove = Vector3.ClampMagnitude(inputMove, 1.0f);
 
-        rb.MovePosition(transform.position + move * horizSpeed * Time.fixedDeltaTime);
+        Vector3 targetVelocity = inputMove * horizSpeed;
+        float blend = 1.0f - Mathf.Exp(-movementSmoothing * Time.fixedDeltaTime);
+
+        smoothedMoveVelocity = Vector3.Lerp(smoothedMoveVelocity, targetVelocity, blend);
+
+        rb.MovePosition(rb.position + smoothedMoveVelocity * Time.fixedDeltaTime);
+        // Vector3 move = new Vector3(moveInput.x, 0.0f, moveInput.y);
+        // rb.MovePosition(transform.position + move * horizSpeed * Time.fixedDeltaTime);
     }
 
     public void OnJump()
@@ -115,6 +125,6 @@ public class EventMovement : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         collectedPopup.SetActive(false);
         mr.material = originalMaterial;
-    }
+    } 
 
 }
