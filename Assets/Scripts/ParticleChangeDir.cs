@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,12 @@ public class ParticleChangeDir : MonoBehaviour
 {
     public ParticleSystem changeDirection;
     private Vector3 lastMoveDirection;
-
+    private bool grounded = true;
+    
+    private void OnJump()
+    {
+        StartCoroutine(StopParticles());
+    }
     private void OnMove(InputValue input)
     {
         Vector2 inputDirection = input.Get<Vector2>();
@@ -27,6 +33,14 @@ public class ParticleChangeDir : MonoBehaviour
         lastMoveDirection = newMoveDirection;
     }
 
+    IEnumerator StopParticles()
+    {
+        changeDirection.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        grounded = false;
+        yield return new WaitForSeconds(1.2f);
+        grounded = true;
+    }
+
     private void PlayDirectionChangeParticles(Vector3 moveDirection)
     {
         if (changeDirection == null)
@@ -34,8 +48,10 @@ public class ParticleChangeDir : MonoBehaviour
             return;
         }
 
-        changeDirection.transform.rotation = Quaternion.LookRotation(-moveDirection, Vector3.up);
-        changeDirection.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        changeDirection.Play(true);
+        if (grounded == true) {
+            changeDirection.transform.rotation = Quaternion.LookRotation(-moveDirection, Vector3.up);
+            changeDirection.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            changeDirection.Play(true);
+        }
     }
 }
