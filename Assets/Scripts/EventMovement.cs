@@ -18,6 +18,7 @@ public class EventMovement : MonoBehaviour
     public float jumpTime = 1.2f;
     public float downForce = 10.0f;
     public float rampModifier = 2.0f;
+    public GameObject collectedPopup;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -110,7 +111,9 @@ public class EventMovement : MonoBehaviour
     IEnumerator ShowCollectibleEffect()
     {
         mr.material = collectibleMaterial;
+        collectedPopup.SetActive(true);
         yield return new WaitForSeconds(1.5f);
+        collectedPopup.SetActive(false);
         mr.material = originalMaterial;
     }
 

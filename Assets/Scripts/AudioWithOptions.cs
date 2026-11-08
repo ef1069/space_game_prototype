@@ -16,12 +16,10 @@ public class AudioWithOptions : MonoBehaviour
     public AudioClip landingSound;
     public AudioClip moveSound;
     public AudioClip chDirSound;
-    public AudioClip collectSound;
     const string JUMP = "jump";
     const string LAND = "land";
     const string MOVE = "move";
     const string CHDIR = "change direction";
-    const string COLLECT = "collect";
     private Dictionary<string, AudioClip> sfx = new Dictionary<string,AudioClip>();
 
     IEnumerator Start()
@@ -32,7 +30,6 @@ public class AudioWithOptions : MonoBehaviour
         sfx.Add(LAND, landingSound);
         sfx.Add(MOVE, moveSound);
         sfx.Add(CHDIR, chDirSound);
-        sfx.Add(COLLECT, collectSound);
         yield return new WaitForSeconds(0.1f);
         waitPastInitialCollision = true;
     }
@@ -117,15 +114,6 @@ public class AudioWithOptions : MonoBehaviour
         }
 
         lastMoveDirection = moveDirection;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Collectible"))
-        {
-            audioPlayer.clip = sfx[COLLECT];
-            audioPlayer.Play();
-        }
     }
     public void PlayJumpSound()
     {
