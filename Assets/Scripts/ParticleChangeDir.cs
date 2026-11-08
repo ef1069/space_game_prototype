@@ -21,7 +21,7 @@ public class ParticleChangeDir : MonoBehaviour
 
         if (lastMoveDirection != Vector3.zero && Vector3.Dot(lastMoveDirection, newMoveDirection) < 0.99f)
         {
-            PlayDirectionChangeParticles(newMoveDirection);
+            PlayDirectionChangeParticles(lastMoveDirection);
         }
 
         lastMoveDirection = newMoveDirection;
