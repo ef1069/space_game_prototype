@@ -20,7 +20,7 @@ public class Trampoline : MonoBehaviour
             return;
         }
 
-        if (IsTopContact(collision))
+        if (IsTopContact(collision) && collision.gameObject.CompareTag("Player"))
         {
             collision.rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
         }
