@@ -5,7 +5,6 @@ public class Trampoline : MonoBehaviour
 {
     public float force;
     [SerializeField] private float topContactTolerance = 0.05f;
-
     private Collider trampolineCollider;
 
     private void Awake()
