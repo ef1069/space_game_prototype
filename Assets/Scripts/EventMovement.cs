@@ -12,12 +12,12 @@ public class EventMovement : MonoBehaviour
     [SerializeField] private Material collectibleMaterial;
     public float force = 10.0f;
     public float horizSpeed = 10.0f;
-    public float horizSpeedDefault = 10.0f;
+    public float forceDefault = 10.0f;
     protected Vector2 moveInput;
     private bool canJump = true;
     public float jumpTime = 1.2f;
     public float downForce = 10.0f;
-    public float rampModifier = 2.0f;
+    public float rampModifier = 20.0f;
     public GameObject collectedPopup;
     [SerializeField] private float movementSmoothing = 12.0f;
     private Vector3 smoothedMoveVelocity;
@@ -97,9 +97,8 @@ public class EventMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ramp"))
         {
-            horizSpeed += rampModifier;
-            RampBoost();
-            Debug.LogError("Contact");
+            force = rampModifier;
+            rb.freezeRotation = false;
         }
     }
 
@@ -107,15 +106,16 @@ public class EventMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ramp"))
         {
-            RampBoost();
-            horizSpeed = horizSpeedDefault;
-            Debug.LogError("Contact Stop");
+            rb.freezeRotation = true;
+            rb.rotation = Quaternion.Euler(0,0,0);
+            StartCoroutine(StopRampBoost());
         }
     }
 
-    IEnumerator RampBoost()
+    IEnumerator StopRampBoost()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
+        force = forceDefault;
     }
 
     IEnumerator ShowCollectibleEffect()
