@@ -8,6 +8,11 @@ public class SceneLoader : MonoBehaviour
     }
 
     public void LoadCreditScene(){
-        SceneManager.LoadSceneAsync("Credits")
+        SceneManager.LoadSceneAsync("Credits");
+    }
+
+    public void LoadTitleScene()
+    {
+        SceneManager.LoadSceneAsync("TitleScreen");
     }
 }

@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioWithOptions
   jumpingSound: {fileID: 8300000, guid: 76e763687c5477b4eb916eff232e0e06, type: 3}
   landingSound: {fileID: 8300000, guid: 4830bc9d04c55634fbae2b9453f6aec1, type: 3}
-  moveSound: {fileID: 8300000, guid: 27f9e78e2bab01843b02ee03a0768d68, type: 3}
+  moveSound: {fileID: 8300000, guid: 4775406708cabe946ac9e0de90c3a707, type: 3}
   chDirSound: {fileID: 8300000, guid: 727b9de5450ed46489691038909b8df4, type: 3}
 --- !u!114 &110896265
 MonoBehaviour:
