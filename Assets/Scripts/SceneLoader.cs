@@ -6,4 +6,8 @@ public class SceneLoader : MonoBehaviour
     public void LoadGameScene(){
         SceneManager.LoadSceneAsync("Main");
     }
+
+    public void LoadCreditScene(){
+        SceneManager.LoadSceneAsync("Credits")
+    }
 }
