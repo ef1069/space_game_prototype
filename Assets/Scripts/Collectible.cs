@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Collectible : MonoBehaviour
 {
     private bool waitPastInitialCollision = false;
-    private int scoreValue = 1;
     public Vector3 rotationSpeed = new Vector3(0, 100, 0);
-    private int playerScore = 0;
     public float bobHeight = 0.2f;
     public float bobSpeed = 2.0f;
     private Vector3 startPosition;
@@ -29,9 +28,9 @@ public class Collectible : MonoBehaviour
         if (waitPastInitialCollision){
             if (other.CompareTag("Player"))
             {
+                FindAnyObjectByType<ScoreKeeper>().ScorePoint();
                 Destroy(gameObject);
                 audioPlayer.Play();
-                playerScore += scoreValue;
             }
         }
     }
