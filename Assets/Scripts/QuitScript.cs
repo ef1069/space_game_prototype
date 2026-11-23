@@ -7,16 +7,7 @@ public class QuitScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            QuitGame();
+            Application.Quit();
         }
-    }
-
-    public void QuitGame()
-    {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit;
-        #endif
     }
 }
